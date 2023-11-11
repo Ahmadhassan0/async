@@ -246,14 +246,20 @@
 
 // ======================================================= async function(Testing APIs)
     async function randomUser () {
-        let raw = await fetch("https://api.publicapis.org/entries");
-        let data = await raw.json();
-        return data.entries.forEach(entry => {
-            console.log("API:", entry.API);
-            console.log("Description:", entry.Description);
-        });
+        try {
+            let raw = await fetch("https://api.publicapis.org/entries");
+            let data = await raw.json();
+            console.log(data)
+            return data.entries.forEach(entry => {
+                console.log("API:", entry.API);
+                console.log("Description:", entry.Description);
+            });
+        } catch (error) {
+            console.error("could not fetch the data")
+        }
     }
     randomUser();
+
 
 
 
